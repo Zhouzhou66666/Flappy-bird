@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../public/css/main.css">
+<!--    <link rel="stylesheet" href="../../../lenovo015/flappyBird/node_modules/bootstrap/dist/css/bootstrap.min.css">-->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<h1 style="text-align: center;position:relative;margin-bottom: -50px" >
+    你好，{{user.nickName}}
+    <small>{{user.bestScore==0?'暂无成绩':'历史最佳:'+user.bestScore+'分'}}</small>
+</h1>
+<p id="account">{{user.account}}</p>
+<div id="box">
+
+    <div id="header">
+        <img src="../public/img/head.jpg" alt="">
+        <div>
+            <img src="../public/img/bird0.png" alt="">
+        </div>
+    </div>
+    <img src="../public/img/bird0.png" id="flyBird" alt="">
+    <ul id="pipeBox">
+        <!--<li>
+            <div class="topPipe">
+                <img src="img/up_pipe.png" alt="">
+            </div>
+            <div class="bottomPipe">
+                <img src="img/down_pipe.png" alt="">
+            </div>
+        </li>-->
+    </ul>
+    <div id="scoreBoard">
+        <img src="../public/img/0.jpg" alt="">
+    </div>
+    <img src="../public/img/start.jpg" id="start" alt="">
+    <div id="slide">
+        <img src="../public/img/slider.jpg" alt="">
+        <img src="../public/img/slider.jpg" alt="">
+    </div>
+    <div id="gameOver">
+        <span>0</span>
+        <img src="../public/img/ok.jpg" alt=""></div>
+</div>
+
+<audio src="../public/source/game_music.mp3" loop></audio>
+<audio src="../public/source/game_over2.mp3"></audio>
+<audio src="../public/source/bullet.mp3"></audio>
+<!--<video src=""></video>-->
+</body>
+</html>
+<script src="../public/js/main.js"></script>

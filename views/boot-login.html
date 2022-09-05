@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <style>
+        #loginBox {
+            margin-top: 100px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 bg-info" id="loginBox">
+            <form action="/login" method="post">
+                <div class="form-group">
+                    <label for="account">请输入你的账号</label>
+                    <input type="text" class="form-control" id="account" placeholder="请输入你的账号" name="account">
+                    <span style="display: none">账号未注册</span>
+                </div>
+                <div class="form-group">
+                    <label for="password">请输入你的密码</label>
+                    <input type="password" class="form-control" id="password" placeholder="请输入你的密码" name="password">
+                </div>
+                <button type="submit" class="btn btn-default pull-right">登录</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    let account = document.getElementById('account')
+    let form = document.getElementsByTagName('form')[0]
+    const test_phone_reg = /^1((3[0-9])|(4[57])|(5[0-35-9])|(7[035-8])|(8[0-9])|66|98|99|47)\d{8}$/
+    //onsubmit事件，如果return false则不提交，如果return true则提交
+    /* $('form').on('submit',function () {
+         if (test_phone_reg.test(account.value)){
+             return true
+         }
+         alert("请检查账号格式")
+         return false
+
+         //return test_phone_reg.test(account.value)
+     })*/
+    form.onsubmit = function () {
+        if (test_phone_reg.test(account.value)) {
+            return true
+        }
+        alert("请检查账号格式")
+        return false
+    }
+
+    //获得焦点focus，失去焦点blur
+    $('#account').on('blur', function () {
+        console.log($('#account').val())//jq获取输入框内容
+        //console.log(account.value)//js获取输入框内容
+        //jQuery中的ajax想后端验证账号是否注册
+        $.get(
+            '/test_account', {
+                account: $('#account').val()
+            },
+            data => {
+                console.log(data)
+                if (data) {
+                    $('#account+span').hide()
+                } else {
+                    $('#account+span').show()
+                }
+            }
+        )
+    })
+</script>
